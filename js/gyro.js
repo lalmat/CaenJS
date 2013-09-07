@@ -1,4 +1,4 @@
-/* Gyro.js : CaenCAMP 2013 - Mathieu LALLEMAND */
+/* Gyro.js : CaenJS - Sept.2013 - Mathieu LALLEMAND */
 
 /* Objets communs ********************************************************** */
 
@@ -9,6 +9,7 @@ var pGyro = {
 }
 
 function setLabel(domElt, html) { document.getElementById(domElt).innerHTML = html; }
+
 
 /* Application Gyroscope *************************************************** */
 
@@ -30,9 +31,9 @@ var app = {
         pGyro.rY = eventData.gamma;
         pGyro.rZ = eventData.alpha;  
 
-        setLabel("rX", (pGyro.rX-pGyro.cX)%360);
-        setLabel("rY", (pGyro.rY-pGyro.cY)%360);
-        setLabel("rZ", (pGyro.rZ-pGyro.cZ)%360);
+        setLabel("rX", Math.round(((pGyro.rX-pGyro.cX)%360)*100)/100);
+        setLabel("rY", Math.round(((pGyro.rY-pGyro.cY)%360)*100)/100);
+        setLabel("rZ", Math.round(((pGyro.rZ-pGyro.cZ)%360)*100)/100);
 
         app.nodeUpdate();
       }, false);
@@ -40,7 +41,7 @@ var app = {
     else alert("Gyroscope non disponible...");
   },
 
-  // Mise à jour du serveur NodeJS avec les nouvelles valeurs du gyroscope
+  // Envoi des nouvelles valeurs du gyroscope au serveur NodeJS
   nodeUpdate: function() {
     if (app.nodeOnline) app.nodeSocket.emit('sendCoords', pGyro);
   },
