@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue 3D</title>
+    
+    <!-- THREE.JS -->
+    <script type="text/javascript" src="js/three.min.js"></script>
+    <script type="text/javascript" src="js/Detector.js"></script>
+
+    <!-- NodeJS / Socket.IO -->
+    <script type="text/javascript">
+      var nodeScript=document.createElement('script')
+          nodeScript.setAttribute("type","text/javascript")
+          nodeScript.setAttribute("src", "http://"+window.location.hostname+":1337/socket.io/socket.io.js");
+      document.getElementsByTagName("head")[0].appendChild(nodeScript)
+    </script>
+
+    <!-- CSS de la page -->
+    <link rel="stylesheet" type="text/css" href="css/vue3d.css">
+  </head>
+  <body>
+
+    <div id="WebGLCanvas" width="800" height="450"></div>
+
+    <div id="debugBox">
+      Cnx:<span id="cnxState">Offline</span><br />
+      rX:<span id="rX">-</span>
+      rY:<span id="rY">-</span>
+      rZ:<span id="rZ">-</span>
+    </div>
+
+    <script type="text/javascript" src="js/vue3d.js"></script>
+    <script type="text/javascript">
+      window.onload = function() {nodeConnect();};
+    </script>
+  </body>
+</html>
